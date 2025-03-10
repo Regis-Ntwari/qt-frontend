@@ -9,6 +9,9 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { createUrl } from "../services/urls";
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
 
 const CreateUrl = () => {
   const [url, setUrl] = useState("");
@@ -17,8 +20,10 @@ const CreateUrl = () => {
   const mutation = useMutation({
     mutationFn: createUrl,
     onSuccess: (data) => {
-      toast.success(`URL Created: ${data.url}`);
+      console.log(data);
+      toast.success(`URL Created. Go to List`);
       setUrl(""); // Clear the input field
+      navigate("/dashboard/view-data");
     },
     onError: (error) => {
       toast.error(`Error: ${error.message}`);

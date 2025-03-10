@@ -32,7 +32,6 @@ const ViewData = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Short Code</TableCell>
             <TableCell>Long URL</TableCell>
             <TableCell>Clicks</TableCell>
@@ -42,10 +41,10 @@ const ViewData = () => {
         <TableBody>
           {data.map((item) => (
             <TableRow key={item.id}>
-              <TableCell>{item.short_code}</TableCell>
-              <TableCell>{item.long_url}</TableCell>
+              <TableCell>{item.shortCode}</TableCell>
+              <TableCell>{item.longUrl}</TableCell>
               <TableCell>{item.clicks}</TableCell>
-              <TableCell>{item.created_at}</TableCell>
+              <TableCell>{item.createdAt}</TableCell>
             </TableRow>
           ))}
         </TableBody>

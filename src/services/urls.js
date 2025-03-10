@@ -36,5 +36,5 @@ export const fetchUrls = async () => {
 
   console.log(data);
 
-  return data; // Return the list of URLs
+  return data.result; // Return the list of URLs
 };
