@@ -11,10 +11,10 @@ import { toast } from "react-toastify";
 import { createUrl } from "../services/urls";
 import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate();
-
 const CreateUrl = () => {
   const [url, setUrl] = useState("");
+
+  const navigate = useNavigate();
 
   // React Query Mutation for creating a URL
   const mutation = useMutation({
