@@ -11,19 +11,20 @@ import {
   Box,
 } from "@mui/material";
 import { toast } from "react-toastify"; // Import toastify
-import { login } from "../services/auth";
+import { signup } from "../services/auth"; // Import the signup service
 
-const Login = () => {
+const SignUp = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: login,
+    mutationFn: signup,
     onSuccess: (data) => {
-      toast.success("Login successful!");
-      navigate("/dashboard");
+      toast.success("Sign Up successful!");
+      navigate("/login"); // Navigate to login after successful sign-up
     },
     onError: (error) => {
       toast.error(`Error: ${error.message}`);
@@ -32,7 +33,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutation.mutate({ username, password });
+    mutation.mutate({ username, email, password });
   };
 
   return (
@@ -62,7 +63,7 @@ const Login = () => {
             gutterBottom
             sx={{ fontWeight: "bold" }}
           >
-            Login
+            Sign Up
           </Typography>
 
           <form onSubmit={handleSubmit}>
@@ -74,6 +75,16 @@ const Login = () => {
               margin="normal"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <TextField
+              label="Email"
+              type="email"
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <TextField
@@ -98,19 +109,21 @@ const Login = () => {
               {mutation.isLoading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (
-                "Login"
+                "Sign Up"
               )}
             </Button>
           </form>
+
+          {/* Login Link */}
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Typography variant="body2">
-              Don't have an account?{" "}
+              Already have an account?{" "}
               <Button
                 color="primary"
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate("/login")}
                 sx={{ textTransform: "none", fontWeight: "bold" }}
               >
-                Sign Up
+                Login
               </Button>
             </Typography>
           </Box>
@@ -120,4 +133,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
