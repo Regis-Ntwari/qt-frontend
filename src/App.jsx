@@ -8,6 +8,7 @@ import SignUp from "./pages/Signup";
 import CreateUrl from "./pages/CreateURL";
 import ViewData from "./pages/ViewData";
 import Dashboard from "./pages/Dashboard";
+import RedirectPage from "./pages/Redirect";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/dashboard/create-url" element={<CreateUrl />} />
           <Route path="/dashboard/view-data" element={<ViewData />} />
         </Route>
+        <Route path="/:shortCode" element={<RedirectPage />} />
       </Routes>
       <ToastContainer />
     </Router>

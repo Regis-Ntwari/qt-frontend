@@ -18,6 +18,26 @@ export const createUrl = async (url) => {
   return response.json(); // Return the created URL data
 };
 
+export const addClick = async (url) => {
+  console.log(url);
+  const token = localStorage.getItem("authToken");
+
+  const response = await fetch("http://localhost:8080/add-click", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Add the token in Authorization header
+    },
+    body: JSON.stringify({ short_code: url }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error Getting the whole URL");
+  }
+
+  return response.json(); // Return the created URL data
+};
+
 export const fetchUrls = async () => {
   const token = localStorage.getItem("authToken");
 
